@@ -1,0 +1,6 @@
+{
+  "name": "Rasanna Daeng - Pemesanan Makanan Khas Makassar",
+  "description": "Aplikasi web pemesanan makanan berempah di Politeknik Negeri Manado untuk Dine-in & Takeaway dengan pembayaran Cash dan QRIS, pelacakan pesanan, struk digital, dan dashboard admin lengkap.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
