@@ -19,6 +19,12 @@ View your app in AI Studio: https://ai.studio/apps/eebaf7a3-aa84-4453-aaee-666ed
 3. Run the app:
    `npm run dev`
 
+## GitHub Pages (static preview)
+
+The `Deploy to GitHub Pages` workflow builds and publishes the frontend when changes are pushed to `main`. In the repository settings, open **Pages** and set the source to **GitHub Actions**. The first deployment may take a few minutes; then open the Pages URL shown in that settings page.
+
+GitHub Pages only hosts static files. Since this app's products, sign-in, ordering, and admin features require the Express API and SQLite database, those features need the full-app deployment below and will not work on the static Pages preview.
+
 ## Deploy the full app
 
 This app uses an Express API and SQLite database, so GitHub Pages cannot host the complete ordering flow. The included `render.yaml` configures a Render web service with persistent storage for the database and uploaded payment proofs.
