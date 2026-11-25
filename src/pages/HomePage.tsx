@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ArrowRight,
   Plus,
@@ -8,12 +8,8 @@ import {
   Phone,
   Sparkles,
   Utensils,
-  Wifi,
-  Smartphone,
-  Laptop,
   Flame,
   Check,
-  Copy,
 } from 'lucide-react';
 import { Product, Category } from '../types/index.ts';
 import { useCart } from '../context/CartContext.tsx';
@@ -26,13 +22,6 @@ interface HomePageProps {
   setSelectedCategory: (catSlug: string) => void;
 }
 
-interface NetworkInfo {
-  port: number;
-  localIps: string[];
-  laptopUrl: string;
-  phoneUrls: string[];
-}
-
 export const HomePage: React.FC<HomePageProps> = ({
   products,
   categories,
@@ -41,22 +30,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   setSelectedCategory,
 }) => {
   const { addToCart, setQuickToast } = useCart();
-  const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
-  const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch('/api/network-info')
-      .then((res) => res.json())
-      .then((data) => setNetworkInfo(data))
-      .catch(() => {});
-  }, []);
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard?.writeText(text);
-    setCopiedUrl(text);
-    setQuickToast(`URL disalin: ${text}`);
-    setTimeout(() => setCopiedUrl(null), 2500);
-  };
 
   // Find featured products matching the poster & menu
   const cotoProduct = products.find((p) => p.name.toLowerCase().includes('coto')) || {
@@ -773,88 +746,6 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span>Notifikasi status pesanan langsung di browser HP</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 6. LOCAL WI-FI NETWORK ACCESS REQUIREMENT HELPER            */}
-      {/* ============================================================ */}
-      <section className="bg-gradient-to-r from-[#323659]/10 via-[#5474A1]/10 to-[#FBF6EE] rounded-3xl border border-[#5474A1]/30 p-5 sm:p-6 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E5D9CC] pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#323659] text-white flex items-center justify-center shrink-0">
-              <Wifi className="w-4 h-4" />
-            </div>
-            <div>
-              <h4 className="font-serif font-bold text-sm sm:text-base text-[#323659]">
-                Akses Jaringan Lokal (Laptop & HP / Wi-Fi)
-              </h4>
-              <p className="text-[11px] text-[#786B63]">
-                Server berjalan di Host <code className="bg-[#E5D9CC]/60 px-1 py-0.5 rounded text-[#323659] font-mono">0.0.0.0:3000</code> siap diakses perangkat lain
-              </p>
-            </div>
-          </div>
-
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold self-start sm:self-auto">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Server Aktif & Siap Koneksi HP</span>
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          {/* Laptop URL */}
-          <div className="bg-[#FFFDF9] p-3.5 rounded-2xl border border-[#E5D9CC] space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-bold text-[#3B1209]">
-                <Laptop className="w-4 h-4 text-[#5B1F11]" />
-                <span>Akses dari Laptop:</span>
-              </span>
-              <button
-                onClick={() => copyToClipboard('http://localhost:3000')}
-                className="text-[11px] text-[#B36633] hover:underline flex items-center gap-1"
-              >
-                {copiedUrl === 'http://localhost:3000' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                <span>Salin</span>
-              </button>
-            </div>
-            <code className="block bg-[#FBF6EE] p-2 rounded-xl text-[#5B1F11] font-mono text-xs select-all break-all">
-              http://localhost:3000
-            </code>
-          </div>
-
-          {/* Phone / Mobile URL on Local Wi-Fi */}
-          <div className="bg-[#FFFDF9] p-3.5 rounded-2xl border border-[#E5D9CC] space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-bold text-[#3B1209]">
-                <Smartphone className="w-4 h-4 text-[#323659]" />
-                <span>Buka di Browser HP (Wi-Fi sama):</span>
-              </span>
-              {networkInfo?.localIps?.[0] && (
-                <button
-                  onClick={() => copyToClipboard(`http://${networkInfo.localIps[0]}:3000`)}
-                  className="text-[11px] text-[#323659] hover:underline flex items-center gap-1 font-semibold"
-                >
-                  {copiedUrl?.includes(networkInfo.localIps[0]) ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  <span>Salin IP</span>
-                </button>
-              )}
-            </div>
-            <code className="block bg-[#FBF6EE] p-2 rounded-xl text-[#323659] font-mono text-xs select-all break-all font-semibold">
-              {networkInfo?.localIps?.[0]
-                ? `http://${networkInfo.localIps[0]}:3000`
-                : 'http://<IP-Lokal-Laptop>:3000 (contoh: http://192.168.1.10:3000)'}
-            </code>
-          </div>
-        </div>
-
-        <div className="text-[11px] text-[#786B63] bg-[#FFFDF9]/80 p-3 rounded-xl border border-[#E5D9CC]/60 space-y-1">
-          <p className="font-semibold text-[#3B1209]">Petunjuk Pengujian di Smartphone:</p>
-          <ol className="list-decimal pl-4 space-y-0.5">
-            <li>Hubungkan HP ke jaringan Wi-Fi yang sama dengan laptop.</li>
-            <li>Buka browser di HP (Chrome / Safari) lalu ketik alamat IP lokal di atas.</li>
-            <li>Seluruh API menggunakan relative URL (`/api/*`), sehingga otomatis terhubung ke backend tanpa error CORS.</li>
-            <li>Database SQLite tersimpan lokal di laptop (<code className="font-mono text-[10px]">data/rasannadaeng.db</code>) sehingga pemesanan tetap berjalan lancar.</li>
-          </ol>
         </div>
       </section>
 
