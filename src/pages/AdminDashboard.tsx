@@ -33,6 +33,7 @@ import {
   RestaurantSettings as RestaurantSettingsType,
 } from '../types/index.ts';
 import { formatRupiah, formatDate, getOrderStatusBadge, getPaymentStatusBadge } from '../utils/format.ts';
+import { logoUrl, resolveImageUrl } from '../utils/assets.ts';
 
 interface AdminDashboardProps {
   setCurrentView: (view: string) => void;
@@ -797,7 +798,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ setCurrentView, 
                     <div className="space-y-1.5">
                       <span className="text-[10px] text-[#786B63] uppercase font-bold block">Bukti Transfer Pelanggan:</span>
                       <a href={ord.paymentProofUrl} target="_blank" rel="noreferrer" className="block relative aspect-video rounded-xl overflow-hidden border border-[#E5D9CC] bg-[#FBF6EE]">
-                        <img src={ord.paymentProofUrl} alt="Bukti Transfer" className="w-full h-full object-cover" />
+                        <img src={resolveImageUrl(ord.paymentProofUrl)} alt="Bukti Transfer" className="w-full h-full object-cover" />
                         <span className="absolute bottom-1 right-1 bg-black/60 text-white text-[9px] px-1.5 py-0.5 rounded">Perbesar</span>
                       </a>
                     </div>
@@ -883,11 +884,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ setCurrentView, 
                     <tr key={p.id} className="hover:bg-[#FBF6EE]/40 transition-colors">
                       <td className="p-3.5">
                         <img
-                          src={p.imageUrl}
+                          src={resolveImageUrl(p.imageUrl)}
                           alt={p.name}
                           className="w-12 h-12 rounded-lg object-cover bg-white border border-[#E5D9CC]"
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = '/logo_rasanna_daeng.svg';
+                            (e.currentTarget as HTMLImageElement).src = logoUrl;
                           }}
                         />
                       </td>
@@ -1343,7 +1344,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ setCurrentView, 
                 <div className="flex gap-3 items-center">
                   <div className="w-16 h-16 rounded-xl border border-[#E5D9CC] overflow-hidden bg-white shrink-0">
                     <img
-                      src={productForm.imageUrl || '/logo_rasanna_daeng.svg'}
+                      src={resolveImageUrl(productForm.imageUrl)}
                       alt="Preview"
                       className="w-full h-full object-cover"
                     />

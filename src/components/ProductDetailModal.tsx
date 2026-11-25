@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Product } from '../types/index.ts';
 import { formatRupiah } from '../utils/format.ts';
+import { logoUrl, resolveImageUrl } from '../utils/assets.ts';
 import { useCart } from '../context/CartContext.tsx';
 
 interface ProductDetailModalProps {
@@ -41,12 +42,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           {/* Main Photo */}
           <div className="relative aspect-[16/10] w-full bg-[#FBF6EE]">
             <img
-              src={product.imageUrl}
+              src={resolveImageUrl(product.imageUrl)}
               alt={product.name}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
               onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/logo_rasanna_daeng.svg';
+                (e.currentTarget as HTMLImageElement).src = logoUrl;
               }}
             />
             {product.tag && (

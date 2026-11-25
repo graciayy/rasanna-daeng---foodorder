@@ -2,6 +2,7 @@ import React from 'react';
 import { Plus, Check } from 'lucide-react';
 import { Product } from '../types/index.ts';
 import { formatRupiah } from '../utils/format.ts';
+import { logoUrl, resolveImageUrl } from '../utils/assets.ts';
 import { useCart } from '../context/CartContext.tsx';
 
 interface ProductCardProps {
@@ -21,13 +22,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
         className="relative aspect-[4/3] w-full overflow-hidden bg-[#FBF6EE] cursor-pointer"
       >
         <img
-          src={product.imageUrl}
+          src={resolveImageUrl(product.imageUrl)}
           alt={product.name}
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             // Elegant fallback to logo
-            (e.currentTarget as HTMLImageElement).src = '/logo_rasanna_daeng.svg';
+            (e.currentTarget as HTMLImageElement).src = logoUrl;
           }}
         />
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Lock, Mail, User, Phone, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.tsx';
 import { useCart } from '../context/CartContext.tsx';
+import { logoUrl } from '../utils/assets.ts';
 
 export const AuthModal: React.FC = () => {
   const { isAuthModalOpen, setIsAuthModalOpen } = useCart();
@@ -63,7 +64,7 @@ export const AuthModal: React.FC = () => {
         <div className="p-5 bg-[#5B1F11] text-[#FBF6EE] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center">
-              <img src="/logo_rasanna_daeng.svg" alt="Rasanna Daeng" className="w-full h-full object-contain" />
+              <img src={logoUrl} alt="Rasanna Daeng" className="w-full h-full object-contain" />
             </div>
             <div>
               <h2 className="font-serif text-xl font-bold">

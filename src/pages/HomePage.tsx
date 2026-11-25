@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Product, Category } from '../types/index.ts';
 import { useCart } from '../context/CartContext.tsx';
+import { logoUrl, resolveImageUrl } from '../utils/assets.ts';
 
 interface HomePageProps {
   products: Product[];
@@ -204,11 +205,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                 {/* Steaming Bowl of Coto with ceramic dish border */}
                 <div className="relative w-full h-full rounded-full p-1 sm:p-2 bg-[#E7BA80]/20 border-2 border-[#E7BA80]/40 shadow-2xl overflow-hidden group">
                   <img
-                    src="/src/assets/images/coto_makassar_bowl_1794359576133.jpg"
+                    src={resolveImageUrl('/src/assets/images/coto_makassar_bowl_1794359576133.jpg')}
                     alt="Ewako Coto Otentik Rasanna Daeng Manado"
                     className="w-full h-full object-cover scale-110 object-center rounded-full shadow-inner"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/logo_rasanna_daeng.svg';
+                      (e.currentTarget as HTMLImageElement).src = logoUrl;
                     }}
                   />
 
@@ -400,7 +401,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           >
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-[#FBF6EE]">
               <img
-                src={cotoProduct.imageUrl}
+                src={resolveImageUrl(cotoProduct.imageUrl)}
                 alt={cotoProduct.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -444,7 +445,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           >
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-[#FBF6EE]">
               <img
-                src={konroProduct.imageUrl}
+                src={resolveImageUrl(konroProduct.imageUrl)}
                 alt={konroProduct.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -497,7 +498,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 >
                   <div className="aspect-square rounded-lg overflow-hidden bg-[#FBF6EE] mb-2 relative">
                     <img
-                      src={prod.imageUrl}
+                      src={resolveImageUrl(prod.imageUrl)}
                       alt={prod.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                     />

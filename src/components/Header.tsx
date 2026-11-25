@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingBag, Search, Menu as MenuIcon, X, Shield, Clock, MapPin, User as UserIcon, Phone, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext.tsx';
 import { useAuth } from '../context/AuthContext.tsx';
+import { logoUrl } from '../utils/assets.ts';
 
 interface HeaderProps {
   currentView: string;
@@ -51,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ currentView, setCurrentView }) =
             >
               {/* Pinisi Boat Logo */}
               <img
-                src="/logo_rasanna_daeng.svg"
+                src={logoUrl}
                 alt="Logo Pinisi Rasanna Daeng"
                 className="w-10 h-10 sm:w-11 sm:h-11 object-contain drop-shadow-xs transition-transform group-hover:scale-105"
               />
@@ -182,7 +183,7 @@ export const Header: React.FC<HeaderProps> = ({ currentView, setCurrentView }) =
             <div className="p-5 border-b border-[#E5D9CC] bg-[#F9F4EB] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img
-                  src="/logo_rasanna_daeng.svg"
+                  src={logoUrl}
                   alt="Logo Rasanna Daeng"
                   className="w-8 h-8 object-contain"
                 />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, MapPin, Clock, ShieldCheck, Heart } from 'lucide-react';
+import { logoUrl } from '../utils/assets.ts';
 
 interface FooterProps {
   setCurrentView: (view: string) => void;
@@ -17,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
           <div className="md:col-span-1 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-white/10 p-1 flex items-center justify-center border border-[#E7BA80]/30">
-                <img src="/logo_rasanna_daeng.svg" alt="Rasanna Daeng" className="w-full h-full object-contain" />
+                <img src={logoUrl} alt="Rasanna Daeng" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-serif text-xl font-bold tracking-tight text-[#E7BA80] leading-none block">

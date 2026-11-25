@@ -16,6 +16,7 @@ import {
 import { Order, OrderStatus } from '../types/index.ts';
 import { formatRupiah, formatDate, getOrderStatusBadge, getPaymentStatusBadge } from '../utils/format.ts';
 import { generateReceiptPDF } from '../utils/pdfReceipt.ts';
+import { logoUrl } from '../utils/assets.ts';
 import { useAuth } from '../context/AuthContext.tsx';
 
 interface OrderReceiptModalProps {
@@ -191,7 +192,7 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({ order, onC
           {/* Brand Heading */}
           <div className="text-center pb-4 border-b border-[#E5D9CC] border-dashed">
             <div className="w-14 h-14 mx-auto mb-2 p-1 rounded-xl bg-[#FBF6EE] border border-[#E5D9CC] flex items-center justify-center">
-              <img src="/logo_rasanna_daeng.svg" alt="Rasanna Daeng" className="w-full h-full object-contain" />
+              <img src={logoUrl} alt="Rasanna Daeng" className="w-full h-full object-contain" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#5B1F11] tracking-tight">
               RASANNA DAENG
@@ -295,7 +296,7 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({ order, onC
                 <div className="bg-[#FBF6EE] p-3 rounded-lg border border-[#E5D9CC] flex items-center gap-3">
                   <div className="w-20 h-20 bg-white p-1 rounded-md border border-[#E5D9CC] shrink-0 flex items-center justify-center">
                     <img
-                      src="/logo_rasanna_daeng.svg"
+                      src={logoUrl}
                       alt="QRIS Rasanna Daeng"
                       className="w-full h-full object-contain"
                     />

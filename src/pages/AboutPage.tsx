@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, Compass, ShieldCheck, Heart } from 'lucide-react';
+import { logoUrl } from '../utils/assets.ts';
 
 export const AboutPage: React.FC = () => {
   return (
@@ -33,7 +34,7 @@ export const AboutPage: React.FC = () => {
 
         <div className="relative aspect-square rounded-2xl bg-[#5B1F11] p-8 flex items-center justify-center border border-[#E5D9CC] shadow-inner">
           <div className="w-48 h-48 p-4 bg-white/10 rounded-2xl backdrop-blur-xs border border-white/20 flex items-center justify-center">
-            <img src="/logo_rasanna_daeng.svg" alt="Pinisi Rasanna Daeng" className="w-full h-full object-contain" />
+            <img src={logoUrl} alt="Pinisi Rasanna Daeng" className="w-full h-full object-contain" />
           </div>
         </div>
       </div>

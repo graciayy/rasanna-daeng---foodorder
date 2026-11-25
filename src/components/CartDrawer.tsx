@@ -3,6 +3,7 @@ import { X, Trash2, Plus, Minus, ArrowRight, Tag, AlertCircle } from 'lucide-rea
 import { useCart } from '../context/CartContext.tsx';
 import { useAuth } from '../context/AuthContext.tsx';
 import { formatRupiah } from '../utils/format.ts';
+import { logoUrl, resolveImageUrl } from '../utils/assets.ts';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -104,11 +105,11 @@ export const CartDrawer: React.FC = () => {
                   className="p-3.5 bg-[#FBF6EE] rounded-xl border border-[#E5D9CC] flex gap-3.5 items-start"
                 >
                   <img
-                    src={item.product.imageUrl}
+                    src={resolveImageUrl(item.product.imageUrl)}
                     alt={item.product.name}
                     className="w-16 h-16 rounded-lg object-cover bg-white shrink-0 border border-[#E5D9CC]"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/logo_rasanna_daeng.svg';
+                      (e.currentTarget as HTMLImageElement).src = logoUrl;
                     }}
                   />
 
